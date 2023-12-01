@@ -17,8 +17,18 @@ const signup = async (req, res, next) => {
   }
 };
 
-const login = (req, res, next) => {
-  res.send("logged in ");
+const login = async (req, res, next) => {
+  let user = await UserModel.findOne({ email: req.body.email });
+  if (user) {
+    user = user.toObject();
+    let hashedPassword = user.password;
+    delete user.password;
+    let matched = await bcrypt.compare(req.body.password, hashedPassword);
+    if (matched) {
+      return res.send(user);
+    }
+  }
+  res.send(401).send("Invalid Credentials");
 };
 
 module.exports = { signup, login };
