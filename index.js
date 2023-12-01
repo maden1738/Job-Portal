@@ -7,10 +7,12 @@ mongoose
   .then(() => console.log("Connected!"));
 
 const jobsRoute = require("./routes//jobs");
+const authRoute = require("./routes/auth");
 const handleServerError = require("./middleware/handleServerError");
 
 app.use(express.json());
 app.use(jobsRoute);
+app.use(authRoute);
 
 app.get("/", (req, res) => {
   res.send("Job Portal");
