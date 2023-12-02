@@ -20,7 +20,9 @@ const signup = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-  let user = await UserModel.findOne({ email: req.body.email });
+  let user = await UserModel.findOne({ email: req.body.email }).select(
+    "+password"
+  );
   //   user.sayHi();
   if (user) {
     user = user.toObject();

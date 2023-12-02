@@ -18,7 +18,7 @@ const UserSchema = new Schema({
       message: "email already in use",
     },
   },
-  password: { type: String, required: true },
+  password: { type: String, required: true, select: false },
   website: {
     type: String,
     validate: {
