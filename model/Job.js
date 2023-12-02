@@ -19,6 +19,7 @@ const JobSchema = new Schema(
     numberOfVacancy: { type: Number },
     offeredSalary: { type: Number },
     createdBy: { type: ObjectId, ref: "Users", immutable: true },
+    image: { type: String },
   },
   {
     timestamps: true,
